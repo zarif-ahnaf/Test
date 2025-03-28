@@ -13,7 +13,7 @@ import bd.ac.bauet.model.User;
 import org.springframework.security.core.Authentication;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000") // this is for security, replace port with frontend port
 @RequestMapping("/api/v1/user")
 public class UserController {
 

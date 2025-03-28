@@ -22,15 +22,15 @@ public class SecurityConfiguration {
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-                http.csrf(AbstractHttpConfigurer::disable) // CSRF not needed for APIs
-                                .sessionManagement(session ->
-                                // No sessions
-                                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                http.csrf(AbstractHttpConfigurer::disable)
+                                .sessionManagement(session -> session
+                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                                 .authorizeHttpRequests(auth -> auth
                                                 .requestMatchers(
-                                                                "/api/v1/auth/**")
-
-                                                .permitAll())
+                                                                "/api/v1/auth/**"       )
+                                                .permitAll()
+                                                .anyRequest().authenticated() // Require auth for other endpoints
+                                )
                                 .authenticationProvider(authenticationProvider)
                                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 

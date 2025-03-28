@@ -27,7 +27,7 @@ public class SecurityConfiguration {
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                                 .authorizeHttpRequests(auth -> auth
                                                 .requestMatchers(
-                                                                "/api/v1/auth/**"       )
+                                                                "/api/v1/auth/**")
                                                 .permitAll()
                                                 .anyRequest().authenticated() // Require auth for other endpoints
                                 )

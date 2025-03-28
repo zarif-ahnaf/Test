@@ -1,5 +1,6 @@
 package bd.ac.bauet.model;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -26,12 +28,29 @@ import lombok.NoArgsConstructor;
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String userId;
 
     private String name;
     private String email;
-    private String password;
+    private String phone;
+    private String gender;
+    private String bloodGroup;
+    private LocalDate birthday;
+
+    private String password; // argon2 hash
+
+    private String batch;
+    private LocalDate graduationDate;
+
+    private String jobTitle;
+    private String jobDescription;
+
+    private String linkedIn;
+    private String facebook;
+    private String github;
 
     @Enumerated(EnumType.STRING)
     private Role role;

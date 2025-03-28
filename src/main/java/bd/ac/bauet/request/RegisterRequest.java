@@ -30,6 +30,6 @@ public class RegisterRequest {
 
     private String linkedIn;
     private String facebook;
-    private String github;
+    private String github;  
 
 }
